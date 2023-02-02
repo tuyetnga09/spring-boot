@@ -31,7 +31,7 @@ public class NewAPI {
     }
 
     //Hàm xoá
-    //Cái mà nhận vào không phải là NewDTO như các hàm trước 
+    //Cái mà nhận vào không phải là NewDTO như các hàm trước
     @DeleteMapping(value = "/new")
     public void deleteNew(@RequestBody long[] ids) {
     }
