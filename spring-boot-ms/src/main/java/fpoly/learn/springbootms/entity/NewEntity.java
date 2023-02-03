@@ -1,8 +1,6 @@
 package fpoly.learn.springbootms.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 @Entity
@@ -16,6 +14,10 @@ public class NewEntity extends BaseEntity{
     private String shortDescription;
     @Column(name = "content")
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
 
     public String getTitle() {
         return title;
