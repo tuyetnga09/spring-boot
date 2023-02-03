@@ -1,10 +1,10 @@
 package fpoly.learn.springbootms.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -17,6 +17,16 @@ public class UserEntity extends BaseEntity {
     private String fullName;
     @Column(name = "status")
     private Integer status;
+
+    //Chỗ này được hiểu là :
+    //Khi 2 thực thể có mối quan hệ nhiều nhiều tức là ManyToMany --> tạo bảng trung gian bằng các câu mapping bên dưới
+    //khi đang viết ở bảng nào thì joinColumn là tên khoá chính đó
+    @ManyToMany
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+
+    private List<RoleEntity> roles = new ArrayList<>();
 
     public String getUserName() {
         return userName;
@@ -49,4 +59,5 @@ public class UserEntity extends BaseEntity {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
 }
